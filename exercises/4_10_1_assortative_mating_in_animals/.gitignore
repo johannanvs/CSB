@@ -1,0 +1,5 @@
+# Ignore symbolic links (not sure if this will also ignore the actual data file now?)
+Jiang2013_data.csv
+
+# Ignore python cache
+__pycache__/
