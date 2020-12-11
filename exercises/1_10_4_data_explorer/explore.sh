@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Last changes: 2020-10-07, Johanna von Seth
+# Last changes: 2020-12-11, Johanna von Seth
 
-# Get stats for a column name of your choice in any csv file
+# This script can be used to get stats for a column name of your choice in any csv file
+# The scripts assumes your located in CSB/exercises/1_10_4_data_explorer/.
 
-# Launch script by writing: $ bash explore.sh path/to/input_file.csv column_number
+#################################################################
+## Usage: bash explore.sh path/to/input_file.csv column_number ##
+#################################################################
 
 file=$1
 col=$2
