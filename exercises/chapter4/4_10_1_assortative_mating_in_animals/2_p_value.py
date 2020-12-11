@@ -25,7 +25,7 @@ def calculate_p_value(file="../../../good_code/data/Jiang2013_data.csv",
 							number_rand=1000):
 	"""
     Take a desired Taxon from 'CSB/good_code/data/Jiang2013_data.csv' as input 
-    and extract all necessary information to be able to calculate the p value of r.
+    and calculate the p value of r.
 
     Usage: python3 2_p_value.py path/to/input_file input_taxon no_randomizations
 	"""
