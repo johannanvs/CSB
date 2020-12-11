@@ -1,20 +1,22 @@
 #!/usr/bin/env python
 
 """
-Jiang et al. (2013) studied assortative mating in animals. They compiled a large database, reporting the results of many experiments on mating. In particular, for several taxa they provide the value of correlation among the sizes of the mates. A positive value of r stands for assortative mating (large animals tend to mate with large animals), and a negative value for disassortative mating.
+Calculate the p value of r for all taxons in CSB/good_code/data/Jiang2013_data.csv.
+
+Usage: python3 3_p_value_all.py
 """
 
-# 3. Repeat the procedure for all taxa.
-
-
 # import previous custom function
-import pValue
+import 2_p_value
+
+# store filename in variable
+datafile="../../../good_code/data/Jiang2013_data.csv"
 
 # define list with taxon names
 taxon_names = []
 
 # open Jiang file
-with open("Jiang2013_data.csv") as infile:
+with open(datafile) as infile:
 	# read line by line
 	for line in infile:
 		# if line is not blank
@@ -28,5 +30,5 @@ with open("Jiang2013_data.csv") as infile:
 # for each taxon in taxon names list
 for t in taxon_names:
 	# do previous function
-	pValue.calculate_p_value("Jiang2013_data.csv", target_taxon=t, number_rand=50000)
+	pValue.calculate_p_value(datafile, target_taxon=t, number_rand=50000)
 	
