@@ -41,19 +41,10 @@ do
 	echo "$columns" >> $outfile	
 done
 
-# highest number of rows
-echo -ne "\nFile with the highest number of rows: "
-high_row=$(sort -k 2nr $outfile | head -n 1 | cut -d " " -f 1)
-echo "$high_row"
-
-# highest number of columns
-echo -n "File with the highest number of columns: "
-high_col=$(sort -k 3nr $outfile | head -n 1 | cut -d " " -f 1)
-echo "$high_col"
 
 # print output filename
 echo ""
-echo -n "In the output file "
+echo -n "Done! In the output file "
 echo -n $outfile
 echo -n " (located in the same directory as this script) you can find the number of rows and columns for all files in the directory "
 echo ${path}/
