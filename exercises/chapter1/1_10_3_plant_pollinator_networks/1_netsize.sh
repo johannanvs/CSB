@@ -3,11 +3,11 @@
 # Date 2020-12-11, Johanna von Seth
 
 # This scripts takes one of the n*.txt files in CSB/unix/data/Saavedra2013/ and counts the number of rows and columns in the file.
-# This script assumes your located in CSB/exercises/1_10_3_plant_pollinator_networks/.
+# This script assumes your located in CSB/exercises/chapter1/1_10_3_plant_pollinator_networks/.
 
-##################################################################
-## USAGE: bash 1_netsize.sh ../../unix/data/Saavedra2013/n1.txt ##
-##################################################################
+#####################################################################
+## USAGE: bash 1_netsize.sh ../../../unix/data/Saavedra2013/n1.txt ##
+#####################################################################
 
 # count number of rows and store in variable:
 rows=$(wc -l < "$1")

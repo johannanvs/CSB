@@ -3,19 +3,23 @@
 # Date: 2020-12-11, Johanna von Seth
 
 # This scripts counts the number of times the blood level of all individuals were recorded. 
-# The scripts assumes your located in CSB/exercises/1_10_2_hormone_levels_in_baboons/.
+# The scripts assumes your located in CSB/exercises/chapter1/1_10_2_hormone_levels_in_baboons/.
+
+##############################################
+## Usage: bash 3_records_individuals_all.sh ##
+##############################################
 
 # Store the output filename in a variable
 outfile="record_count_per_individual.txt"
 
 # Store the relative path to the data directory
-datadir=../../unix/data
+datadir=../../../unix/data
 
 # Store the data filename in a variable
 data="Gesquiere2011_data.csv"
 
 # Store the relative path to the location of the script (this is where the output file should be)
-outdir=../../exercises/1_10_2_hormone_levels_in_baboons
+outdir=../../exercises/chapter1/1_10_2_hormone_levels_in_baboons
 
 
 # Change to the folder where the data file is located

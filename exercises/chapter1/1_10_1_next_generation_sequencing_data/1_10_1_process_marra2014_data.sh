@@ -2,11 +2,11 @@
 
 # Date: 201210, Johanna von Seth
 
-# This script is used to process the file "Marra2014_data.fasta" to answer some simple questions. It assumes you run the script from the CSB/exercises/1_10_1_next_generation_sequencing_data/ folder, and that the filesystem within CSB is the same
+# This script is used to process the file "Marra2014_data.fasta" to answer some simple questions. It assumes you run the script from the CSB/exercises/chapter1/1_10_1_next_generation_sequencing_data folder, and that the filesystem within CSB is the same
 
 
 # 1. Change directory to CSB/unix/sandbox.
-cd ../../unix/data/
+cd ../../../unix/data/
 
 # 2. What is the size of the file Marra2014_data.fasta?
 echo -e "\nThe file size of Marra2014_data.fasta is:"

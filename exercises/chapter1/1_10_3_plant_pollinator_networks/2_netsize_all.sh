@@ -3,11 +3,11 @@
 # Date 2020-12-11, Johanna von Seth
 
 # This scripts takes all the n*.txt files in CSB/unix/data/Saavedra2013/ and counts the number of rows and columns in for each file.
-# This script assumes your located in CSB/exercises/1_10_3_plant_pollinator_networks/.
+# This script assumes your located in CSB/exercises/chapter1/1_10_3_plant_pollinator_networks/.
 
-###############################################################
-## Usage: bash 2_netsize_all.sh ../../unix/data/Saavedra2013 ##
-###############################################################
+##################################################################
+## Usage: bash 2_netsize_all.sh ../../../unix/data/Saavedra2013 ##
+##################################################################
 
 # store input path in variable
 path=$1

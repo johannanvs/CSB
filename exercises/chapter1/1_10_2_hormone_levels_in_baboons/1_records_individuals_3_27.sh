@@ -3,10 +3,14 @@
 # Date: 201210, Johanna von Seth
 
 # This scripts counts the number of times the blood level of individuals 3 and 27 were recorded. 
-# The scripts assumes your located in CSB/exercises/1_10_2_hormone_levels_in_baboons/.
+# The scripts assumes your located in CSB/exercises/chapter1/1_10_2_hormone_levels_in_baboons/.
+
+###############################################
+## Usage: bash 1_records_individuals_3_27.sh ##
+###############################################
 
 # Change to the folder where the data file is located
-cd ../../unix/data/
+cd ../../../unix/data/
 
 # Filter out all record entries with individual 3
 echo -e "\nNumber of record entries for individual 3:"
