@@ -61,11 +61,6 @@ def calculate_p_value(file="../../../good_code/data/Jiang2013_data.csv",
 					# append r value to data list
 					data_r.append(float(current_r_value))
 
-#def compute_p_value():
-	"""
-	compute the p-value for the value of r.
-	"""
-
 	## compute mean of r ##
 	mean_taxon_r = statistics.mean(taxon_r)
 
