@@ -4,14 +4,6 @@
 # Date: 2020-12-11, Johanna von Seth
 
 
-################################################
-## Usage: python3 4_mean_pop_per_city_year.py ##
-################################################
-
-
-# 1. You can find the data in good_code/data/Jiang2013_data.csv. Write a function that takes as input the desired Taxon and returns the mean value of r.
-
-
 # import necessary modules
 import sys
 import statistics
@@ -23,7 +15,7 @@ def compute_mean_r(input_file="../../../good_code/data/Jiang2013_data.csv",
     Take a desired Taxon from 'CSB/good_code/data/Jiang2013_data.csv' as input and return it's mean value of r (mating).
     A positive mean r stands for assortative mating, and a negative to disassortative mating.
 
-    Usage: python3 1_mean_mating.py input_file input_taxon
+    Usage: python3 1_mean_mating.py path/to/input_file input_taxon
 
     =================================
     Unit testing with docstrings
