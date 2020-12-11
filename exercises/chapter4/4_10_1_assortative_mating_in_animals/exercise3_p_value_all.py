@@ -7,7 +7,7 @@ Usage: python3 3_p_value_all.py
 """
 
 # import previous custom function
-import 2_p_value
+import exercise2_p_value
 
 # store filename in variable
 datafile="../../../good_code/data/Jiang2013_data.csv"
@@ -30,5 +30,5 @@ with open(datafile) as infile:
 # for each taxon in taxon names list
 for t in taxon_names:
 	# do previous function
-	pValue.calculate_p_value(datafile, target_taxon=t, number_rand=50000)
+	exercise2_p_value.calculate_p_value(datafile, target_taxon=t, number_rand=50000)
 	
