@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+# coding: utf-8
+
+# Date: 2020-12-11, Johanna von Seth
+
+
 
 """
 Jiang et al. (2013) studied assortative mating in animals. They compiled a large database, reporting the results of many experiments on mating. In particular, for several taxa they provide the value of correlation among the sizes of the mates. A positive value of r stands for assortative mating (large animals tend to mate with large animals), and a negative value for disassortative mating.
@@ -15,7 +20,17 @@ import sys
 import random
 import statistics
 
-def calculate_p_value(file="Jiang2013_data.csv", target_taxon="Fish", number_rand=1000):
+def calculate_p_value(file="../../../good_code/data/Jiang2013_data.csv", 
+							target_taxon="Fish", 
+							number_rand=1000):
+	"""
+    Take a desired Taxon from 'CSB/good_code/data/Jiang2013_data.csv' as input 
+    and extract all necessary information to be able to calculate the p value of r.
+
+    Usage: python3 2_p_value.py path/to/input_file input_taxon no_randomizations
+	"""
+
+
 	## extracting data from input file ##
 
 	# define list for taxon r values
@@ -46,6 +61,11 @@ def calculate_p_value(file="Jiang2013_data.csv", target_taxon="Fish", number_ran
 					# append r value to data list
 					data_r.append(float(current_r_value))
 
+#def compute_p_value():
+	"""
+	compute the p-value for the value of r.
+	"""
+
 	## compute mean of r ##
 	mean_taxon_r = statistics.mean(taxon_r)
 
@@ -74,6 +94,7 @@ def calculate_p_value(file="Jiang2013_data.csv", target_taxon="Fish", number_ran
 	## compute probabilites ##
 	# the probability of getting a mean value higher than the taxon mean r = number of higher means / number of taxon occurences
 	p_value = count_higher_mean / total_counts
+	print("")
 	print("Taxon:", target_taxon,) 
 	print("Mean r value:", round(mean_taxon_r, 4))
 	print("p value:", round(p_value, 4))
