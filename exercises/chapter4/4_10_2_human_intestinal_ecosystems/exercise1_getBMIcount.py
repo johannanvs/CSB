@@ -1,17 +1,14 @@
 #!/usr/bin/env python
 
-# Lahti et al. (2014) studied the microbial communities living in the intestines of 1000 individuals. They found that bacterial strains tend to be either absent or abundant, and posit that this would reflect bistability in these bacterial assemblages. The data used in this study are contained in the directory good_code/data/Lahti2014. The directory contains:
-# Metadata.tab: characterizing each of the 1006 human records
-# HITChip.tab: containing HITChip signal estimates of microbial abundance
-# README: a description of the data by the study authors.
+""" 
+Last updated: 2021-01-07, Johanna von Seth
 
-# 1. Write a function that takes as input a dictionary of constraints (i.e., selecting a specific group of records) and returns a dictionary tabulating the BMI group for all the records matching the constraints. For example, calling:
+Usage: python3 exercise1_getBMIcount.py
 
-#       get_BMI_count({"Age": "28", "Sex": "female"})
+Note! The wanted group of records should be entered at the last line of this script.
 
-# should return
-
-#       {'NA': 3, 'lean': 8, 'overweight': 2, 'underweight': 1}
+This script takes as input a dictionary of constraints (i.e., a specific group of records) from the Metadata.tab file in Lahti et al. (2014) and returns a dictionary tabulating the BMI group for all the records matching the constraints. The script assumes you're located in CSB/exercises/chapter4/4_10_2_human_intestinal_ecosystems/. 
+"""
 
 # import required modules
 import csv
@@ -21,7 +18,7 @@ def get_BMI_count(constr_dict):
     # define dictionary
     bmi_dict = {}
     # define input file
-    metadata_file = "Metadata.tab"
+    metadata_file = "../../../good_code/data/Lahti2014/Metadata.tab"
     # open metadata file with the DictReader module, tab delimited
     with open(metadata_file) as infile:
         # create dictionary for each header category
@@ -50,3 +47,4 @@ def get_BMI_count(constr_dict):
 
 # Call the function
 get_BMI_count({"Age": "28", "Sex": "female"})
+
