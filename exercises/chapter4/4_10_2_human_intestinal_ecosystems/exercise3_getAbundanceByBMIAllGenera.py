@@ -3,12 +3,22 @@
 """
 Last updated: 2021-01-07, Johanna von Seth
 
-Usage: python3 exercise2_getAbundanceByBMI.py
+Usage: python3 exercise3_getAbundanceByBMIAllGenera.py 
 
-Note! The wanted group of records and the bacterial genus should be entered at the last line of this script.
-
-This script contains a function that takes as input the constraints (as in exercise1_getBMIcount.py) and a bacterial “genus.” The function returns the average abundance (in logarithm base 10) of the genus for each BMI group in the subpopulation. The script assumes you're located in CSB/exercises/chapter4/4_10_2_human_intestinal_ecosystems/.
+This script contains a function that returns the average abundance (in logarithm base 10) of all genera for each BMI group in a specified subpopulation at Time = 0. The script assumes you're located in CSB/exercises/chapter4/4_10_2_human_intestinal_ecosystems/.
 """
+
+def get_all_genera():
+    # open hitchip file to get all genera:
+    with open("../../../good_code/data/Lahti2014/HITChip.tab") as infile:
+        headers = infile.readline().strip()
+        # start from 1 since the first header is sample ID
+        genera = headers.split('\t')[1:]
+    return genera
+
+###################################################################################################
+
+# Abundance function from exercise 2
 
 # import required modules
 import csv
@@ -74,7 +84,7 @@ def get_abundance_by_BMI(metadata_file, constr_dict, hitchip_file, target_genus)
     ## Print final output ##
     print("")
     print("---------------------------------------------")
-    print("Abundance of Clostridium difficile et rel.")
+    print("Abundance of", target_genus)
     print("In subpopulation:")
     print("---------------------------------------------")
     print("Nationality -> ", constr_dict["Nationality"])
@@ -86,7 +96,8 @@ def get_abundance_by_BMI(metadata_file, constr_dict, hitchip_file, target_genus)
     print("---------------------------------------------")
     print("")
 
+####################################################################################################
 
-
-# Call the function
-get_abundance_by_BMI("../../../good_code/data/Lahti2014/Metadata.tab", {"Time": "0", "Nationality": "US"}, "../../../good_code/data/Lahti2014/HITChip.tab", "Clostridium difficile et rel.")
+# Call function for each genera
+for g in get_all_genera():
+    get_abundance_by_BMI("../../../good_code/data/Lahti2014/Metadata.tab", {"Time": "0", "Nationality": "US"}, "../../../good_code/data/Lahti2014/HITChip.tab", g)
