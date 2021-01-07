@@ -3,7 +3,7 @@
 """
 Calculate the p value of r for all taxons in CSB/good_code/data/Jiang2013_data.csv.
 
-Usage: python3 3_p_value_all.py
+Usage: python3 exercise3_p_value_all.py
 """
 
 # import previous custom function
