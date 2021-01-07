@@ -1,18 +1,13 @@
 #!/usr/bin/env python
-# coding: utf-8
 
 # Date: 2020-12-11, Johanna von Seth
-
-
+# Last updated: 2021-01-07, Johanna von Seth
 
 """
-Jiang et al. (2013) studied assortative mating in animals. They compiled a large database, reporting the results of many experiments on mating. In particular, for several taxa they provide the value of correlation among the sizes of the mates. A positive value of r stands for assortative mating (large animals tend to mate with large animals), and a negative value for disassortative mating.
-"""
+This python script computes a p-value by repeatedly sampling n values of mating (r) from Jiang et al. (2013) (where n = number of experiments on specified taxon reported in the database) at random, and calculates the probability of observing a higher mean value of r. To get an accurate estimate of the p-value, use 50,000 randomizations.
 
-# 2. You should see that fish have a positive value of r, but that this is also true for other taxa. Is the mean value of r especially high for fish? 
-  # To test this, compute a p-value by repeatedly sampling 37 values of r (37 experiments on fish are reported in the database) at random, 
-  # and calculating the probability of observing a higher mean value of r. 
-  # To get an accurate estimate of the p-value, use 50,000 randomizations.
+Usage: python3 exercise2_p_value.py path/to/input_file input_taxon no_randomizations
+"""
 
 
 # import necessary modules
@@ -22,14 +17,7 @@ import statistics
 
 def calculate_p_value(file="../../../good_code/data/Jiang2013_data.csv", 
                       target_taxon="Fish", 
-                      number_rand=1000):
-  """
-    Take a desired Taxon from 'CSB/good_code/data/Jiang2013_data.csv' as input 
-    and calculate the p value of r.
-
-    Usage: python3 2_p_value.py path/to/input_file input_taxon no_randomizations
-  """
-
+                      number_rand=50000):
 
   ## extracting data from input file ##
 
@@ -61,7 +49,7 @@ def calculate_p_value(file="../../../good_code/data/Jiang2013_data.csv",
           # append r value to data list
           data_r.append(float(current_r_value))
 
-  ## compute mean of r ##
+  ## compute taxon mean of r ##
   mean_taxon_r = statistics.mean(taxon_r)
 
   ## compute p value ##
