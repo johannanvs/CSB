@@ -1,42 +1,22 @@
 #!/usr/bin/env python
 
-# Lahti et al. (2014) studied the microbial communities living in the intestines of 1000 individuals. They found that bacterial strains tend to be either absent or abundant, and posit that this would reflect bistability in these bacterial assemblages. The data used in this study are contained in the directory good_code/data/Lahti2014. The directory contains:
-# Metadata.tab: characterizing each of the 1006 human records
-# HITChip.tab: containing HITChip signal estimates of microbial abundance
-# README: a description of the data by the study authors.
+"""
+Last updated: 2021-01-07, Johanna von Seth
 
-# 2. Write a function that takes as input the constraints (as above) and a bacterial “genus.” The function returns the average abundance (in logarithm base 10) of the genus for each BMI group in the subpopulation. For example, calling
+Usage: python3 exercise2_getAbundanceByBMI.py
 
-#       get_abundance_by_BMI({"Time": "0", "Nationality": "US"}, "Clostridium difficile et rel.")
+Note! The wanted group of records and the bacterial genus should be entered at the last line of this script.
 
-# should return
-
-#       ______________________________________________
-#       Abundance of Clostridium difficile et rel.
-#       In subpopulation: 
-#       ______________________________________________ 
-#       Nationality -> US
-#       Time -> 0 
-#       ______________________________________________ 
-#       3.08    NA
-#       3.31    underweight
-#       3.84    lean
-#       2.89    overweight
-#       3.31    obese
-#       3.45    severeobese
-
-target_genus = "Clostridium difficile et rel."
+This script contains a function that takes as input the constraints (as in exercise1_getBMIcount.py) and a bacterial “genus.” The function returns the average abundance (in logarithm base 10) of the genus for each BMI group in the subpopulation. The script assumes you're located in CSB/exercises/chapter4/4_10_2_human_intestinal_ecosystems/.
+"""
 
 # import required modules
 import csv
+import math
 
-# define function
-def get_abundance_by_BMI(constr_dict):
-    # define Metadata dictionary
+def get_abundance_by_BMI(metadata_file, constr_dict, hitchip_file, target_genus):
+    # define metadata dictionary
     metadata_dict = {}
-    # define input file
-    metadata_file = "Metadata.tab"
-    # open metadata.tab file with dictreader
     with open(metadata_file) as infile1:
         # store headers as keys
         metadata = csv.DictReader(infile1, delimiter = '\t')
@@ -50,44 +30,63 @@ def get_abundance_by_BMI(constr_dict):
                 if line[c] != constr_dict[c]:
                     all_matching = False
                     break
-            # if all match, store BMI_group as key and sample ID as value? Sample IDs will then be a list
+            # if all match
             if all_matching == True:
-                # store BMI group in variable
                 line_bmi = line['BMI_group']
-                # store sample ID in variable
                 line_id = line['SampleID']
-                # add BMI_group and sampleID
+                # store bmi group as key and sample ID as value in list
                 if line_bmi in metadata_dict.keys():
                     metadata_dict[line_bmi] += [line_id]
                 else:
                     metadata_dict[line_bmi] = [line_id]
-    
-
-    print(metadata_dict.values())
             
-    # define HITChip dictionary
+    # define hitchip dictionary
     hitchip_dict = {}
-    # define input file 2
-    hitchip_file = "HITChip.tab"
-    # open HITChip.tab with dictreader
     with open(hitchip_file) as infile2:
-        # store headers as key
+        # store headers as key, i.e. sample ID and the genus names
         hitchipdata = csv.DictReader(infile2, delimiter = '\t')
-        # for each line, if sample ID in metadata dictionary
         for line in hitchipdata:
-            # store line sample ID in variable
             line_id = line['SampleID']
-            for bmi, 
-            # if sample ID from metadata dictionary match line sample ID
-            if line_id in metadata_dict.values():
-                # store bmi group of sample ID in hitchip dictionary
-                print(metadata_dict[line_id])
-        #    else:
-        #        print(line_id, "not in metadata_dict")
-        # store BMI_group from metadata dictionary of corresponding sample ID as key in HITChip dict and vinput     bacteria genus as dict value?   
-        
-        # 
+            line_abundance = str(line[target_genus])
+            for bmi in metadata_dict.keys(): 
+                # if sample ID from metadata dictionary match line sample ID
+                if line_id in metadata_dict[bmi]:
+                    # store bmi group of sample ID as key in hitchip dictionary
+                    # store bacterial abundance in list of that key
+                    if bmi in hitchip_dict.keys():
+                        hitchip_dict[bmi] += [line_abundance]
+                    else:
+                        hitchip_dict[bmi] = [line_abundance]
+
+    ## Count number of entries per BMI group, and calculate the average abundance of bacterium ##
+    # Define average abundance dictionary
+    average_abundance = {}
+    for bmi,abundance in hitchip_dict.items():
+        total_count = 0.0
+        total_abundance = 0.0
+        # iterate over abundance entries for each bmi group
+        for a in abundance:
+            total_count += 1.0
+            total_abundance += float(a)
+        # calculate average abundance in logarithm base 10
+        average_abundance[bmi] = round(math.log10(total_abundance / total_count), 2)
+
+    ## Print final output ##
+    print("")
+    print("---------------------------------------------")
+    print("Abundance of Clostridium difficile et rel.")
+    print("In subpopulation:")
+    print("---------------------------------------------")
+    print("Nationality -> ", constr_dict["Nationality"])
+    print("Time ->", constr_dict["Time"])
+    print("")
+    print("---------------------------------------------")
+    for bmi,abundance in average_abundance.items():
+        print(abundance, "\t", bmi)
+    print("---------------------------------------------")
+    print("")
+
 
 
 # Call the function
-get_abundance_by_BMI({"Time": "0", "Nationality": "US"})
+get_abundance_by_BMI("../../../good_code/data/Lahti2014/Metadata.tab", {"Time": "0", "Nationality": "US"}, "../../../good_code/data/Lahti2014/HITChip.tab", "Clostridium difficile et rel.")
