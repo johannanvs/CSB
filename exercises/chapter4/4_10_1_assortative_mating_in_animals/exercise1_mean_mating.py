@@ -15,7 +15,7 @@ def compute_mean_r(input_file="../../../good_code/data/Jiang2013_data.csv",
     Take a desired Taxon from 'CSB/good_code/data/Jiang2013_data.csv' as input and return it's mean value of r (mating).
     A positive mean r stands for assortative mating, and a negative to disassortative mating.
 
-    Usage: python3 1_mean_mating.py path/to/input_file input_taxon
+    Usage: python3 exercise1_mean_mating.py path/to/input_file input_taxon
 
     =================================
     Unit testing with docstrings
