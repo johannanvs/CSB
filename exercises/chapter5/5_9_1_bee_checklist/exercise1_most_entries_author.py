@@ -9,11 +9,11 @@ This script contains a function that returns the name of the author with the hig
 
 """
 
-# Import modules
+# import modules
 import csv
 import re
 
-# Store path to file and filename in variable
+# store path to file and filename in variable
 file="../../../regex/data/bee_list.txt"
 
 # open file
@@ -27,25 +27,17 @@ with open(file) as f:
 		# extract author/date string in list 
 		authors.append(line['Taxon Author'])
 
-#print(len(species))
-#print(len(authors))
-
-#au = authors[37]
-
-# Build a regular expression that captures authors in one group, and the year in another group
-# Start with au as an example
+# build a regular expression that captures authors in one group, and the year in another group
 my_regex = re.compile(r'\(?([\w\s,\.\-\&]*),\s(\d{4})\)?')
-#	Translation:
+#	translation:
 #	\(? = line might start with '(' and it might not
 #	([\w\s,\.\-\&]*) = first group corresponding to author names
 # 	,\s = the characters between the two groups, will not be saved into any group
 #	(\d{4}) = second group, corresponding to publication year
 #	\(? = line might end with '(' and it might not
 
-#print(re.findall(my_regex, au))
-# Out: [('Tadauchi, Hirashima & Matsumura', '1987')]
 
-# Define function that extracts all authors separately, and year
+# define function that extracts all authors separately, and year
 def extract_au_year(au):
 	test = re.match(my_regex, au)
 	authorlist = test.group(1)
@@ -53,9 +45,6 @@ def extract_au_year(au):
 	# split authors into a list, either by comma or pipe sign
 	authorlist = re.split(', | \& ', authorlist)
 	return [authorlist, year]
-
-# print output from function
-#print(extract_au_year(au))
 
 # create two dictionaries, one that keeps track of number of entries/year, and one that keeps track of number of entries/author
 authors_dict = {}
