@@ -48,3 +48,6 @@ hits = handle.read()
 handle.close()
 out_handle.write(hits)
 out_handle.close()
+
+print("\nThis part of the exercise is now finished, and file 'd_virilis_abstracts.txt' has been created.") 
+print("Continue with exercise3_most_contributions.py.\n")
