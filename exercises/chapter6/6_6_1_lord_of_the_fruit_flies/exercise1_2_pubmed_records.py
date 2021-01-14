@@ -3,9 +3,9 @@
 """
 Last updated: 2021-01-14, Johanna von Seth
 
-Usage: python3 most_contributions_d_virilis.py
+Usage: python3 exercise1_2_pubmed_records.py
 
-This script identifies the five authors that published most contributions on D. virilis. The script assumes you're located in CSB/exercises/chapter6/6_6_1_lord_of_the_fruit_flies.
+This script downloads data on all publications with the words Drosophila virilis in the title or abstract. The script assumes you're located in CSB/exercises/chapter6/6_6_1_lord_of_the_fruit_flies.
 
 """
 
@@ -48,20 +48,3 @@ hits = handle.read()
 handle.close()
 out_handle.write(hits)
 out_handle.close()
-
-
-# 3. Count the number of contributions per author.
-# filter out author names from each paper using regular expression
-# want the 'AU' field - see what I did in chapter 5
-
-# open file and read the whole file at once
-with open("d_virilis_abstracts.txt", "r") as datafile:
-    #pubmed_input = datafile.read()
-    # capture 'AU' field
-    for line in pubmed_input:
-        # delete newlines followed by 6 white spaces
-        # to have titles and abstracts on one line
-        pubmed_input = re.sub(r"\n\s{6}", " ", pubmed_input)
-        print(line)
-        if re.match(r"AU", line):
-            print(line)
