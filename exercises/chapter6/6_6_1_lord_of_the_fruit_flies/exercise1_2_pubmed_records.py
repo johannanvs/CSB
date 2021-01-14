@@ -34,6 +34,7 @@ record["Count"]
 webenv = record["WebEnv"]
 query_key = record["QueryKey"]
 
+
 # 2. Retrieve the PubMed entries that were identified in step (1).
 # retrieve data
 Entrez.email = "johanna.vonseth@nrm.se"
@@ -49,6 +50,18 @@ out_handle.write(hits)
 out_handle.close()
 
 
+# 3. Count the number of contributions per author.
+# filter out author names from each paper using regular expression
+# want the 'AU' field - see what I did in chapter 5
 
-
-
+# open file and read the whole file at once
+with open("d_virilis_abstracts.txt", "r") as datafile:
+    #pubmed_input = datafile.read()
+    # capture 'AU' field
+    for line in pubmed_input:
+        # delete newlines followed by 6 white spaces
+        # to have titles and abstracts on one line
+        pubmed_input = re.sub(r"\n\s{6}", " ", pubmed_input)
+        print(line)
+        if re.match(r"AU", line):
+            print(line)
