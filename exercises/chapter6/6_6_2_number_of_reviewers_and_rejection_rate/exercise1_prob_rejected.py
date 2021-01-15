@@ -67,22 +67,10 @@ print("NumRev", "\t",
 	"RejectRate")
 # get the rejection rate per number of reviewers
 for i in range(max(num_rev) + 1):
+	# print number of reviewers
 	print(i, "\t",
+		# print number of manuscript with i number of reviewers
 		len(decision[num_rev == i]), "\t",
+		# print rejection rate for i
 		round(decision[num_rev == i].mean(), 3))
 print("=============================")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
