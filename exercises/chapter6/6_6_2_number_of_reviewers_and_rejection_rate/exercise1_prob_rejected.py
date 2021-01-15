@@ -16,22 +16,12 @@ import numpy as np
 # read file with pandas
 foxdata = pandas.read_csv("../../../scientific/data/Fox2015_data.csv")
 
-# check names of columns
-#print(foxdata.columns)
-# out: Index(['MsID', 'Year', 'HandlingEditorSex', 'ReviewerSex', 'ReviewerRegion',
-#       'ReviewerInvited', 'ReviewerAgreed', 'ReviewerScore', 'FinalDecision'],
-#      dtype='object')
-
-
 # get the unique MsID's by storing 'MsID' as a list and then a set 
 uniq_ms = list(set(foxdata['MsID']))
-#num_ms = len(uniq_ms)
-#print(num_ms)
 
-# store number of reviewers, final decision, and year in individual lists
+# store number of reviewers and final decision in individual lists
 num_rev = []
 decision = []
-year = []
 
 # extract corresponding info from data file, by using the list of unique MsID's
 for ms in uniq_ms:
@@ -46,13 +36,10 @@ for ms in uniq_ms:
 		decision.append(1)
 	else:
 		decision.append(0)
-	# extract year
-	year.append(list(subset["Year"])[0])
 
 # convert lists into arrays using numpy
 num_rev = np.array(num_rev)
 decision = np.array(decision)
-year = np.array(year)
 
 # measure and print rejection rate for each number of reviewers
 # number of submissions
