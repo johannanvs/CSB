@@ -58,9 +58,6 @@ def rejection_probability(input_year):
         # extract number of reviewers at the same index positons as input_year are in list year
         revs = revs[np.where(year == input_year)]
         decision = decision[np.where(year == input_year)]
-    else:
-        revs = revs
-        decision = decision
 
     # store no of submissions and overall rejection rate of the year
     submissions = len(decision)
