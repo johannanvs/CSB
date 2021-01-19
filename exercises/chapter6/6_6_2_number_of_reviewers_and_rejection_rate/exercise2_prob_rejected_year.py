@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 
 """
-Last updated: 2021-01-14, Johanna von Seth
+Last updated: 2021-01-19, Johanna von Seth
+
+Note! To run this script for all years, simply enter on the command line:
+bash exercise2_call_function.sh
 
 Usage: python3 exercise2_prob_rejected_year.py year
 
-This script contains a function that counts the number of reviewers per manuscript and measures the probability of rejection per year. The script assumes you're located in CSB/exercises/chapter6/6_6_2_number_of_reviewers_and_rejection_rate.
+This script contains a function that counts the number of reviewers per manuscript and measures the probability of rejection per user defined year. The script assumes you're located in CSB/exercises/chapter6/6_6_2_number_of_reviewers_and_rejection_rate.
 
 """
 
@@ -40,7 +43,7 @@ def rejection_probability(input_year):
         else:
             decision.append(0)
         # extract year
-        year.append(list(subset["Year"])[0])
+        year.append(str(list(subset["Year"])[0]))
 
     # convert lists into arrays using numpy
     # List of number of reviewers per manuscript
@@ -48,14 +51,13 @@ def rejection_probability(input_year):
     # List of final decision per manuscript
     decision = np.array(decision)
     # List of year per manuscript
-    #year = np.array(year)
-    
+    year = np.array(year)
+
     if input_year != "all":
-        print(year[year == input_year])
         # extract data from user defined year
         # extract number of reviewers at the same index positons as input_year are in list year
-#        revs = revs[year == input_year]
-#        decision = decision[year == input_year]
+        revs = revs[np.where(year == input_year)]
+        decision = decision[np.where(year == input_year)]
     else:
         revs = revs
         decision = decision
