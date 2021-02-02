@@ -14,3 +14,4 @@ exercises/chapter6/6_6_2_number_of_reviewers_and_rejection_rate/Fox2015_data.csv
 # Ignore sandbox files
 regex/sandbox/
 scientific/sandbox
+r/sandbox
